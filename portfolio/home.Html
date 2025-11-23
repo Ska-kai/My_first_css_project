@@ -29,7 +29,7 @@
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eligendi similique illo amet
       </p>
-      <button type="button" class="banner-btn">x</button>
+      <button type="button" class="banner-btn" id="banner-btn">x</button>
     </div>
 
     <div class="navbar">
@@ -162,7 +162,14 @@
       resizeCanvas();
       initParticles();
     });
+
+  document.getElementById("banner-btn").addEventListener("click", function() {
+  const y = document.querySelector(".banner");
+  y.style.visibility = (y.style.visibility === "visible") ? "hidden" : "visible";
+});
+
   </script>
 
 </body>
 </html>
+
