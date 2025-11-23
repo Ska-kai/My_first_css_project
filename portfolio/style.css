@@ -50,10 +50,10 @@ canvas.particles {
   background-color: hsl(0, 50%, 2%);
   text-align: center;
   padding: 4px 8px;
+   visibility: visible;
 }
 
 .banner > p {
-   visibility: visible;
    font-family: "Press start 2p", iceberg, serif, sans-serif;
    font-size: 0.8em;
 }
@@ -307,4 +307,5 @@ canvas.particles {
   font-size: 0.95rem;
   letter-spacing: 0.5px;
 }
+
 
