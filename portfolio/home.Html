@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Site</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Layer 1: Particle background -->
+  <canvas class="particles"></canvas>
+
+  <!-- Layer 2: Overlay layer -->
+  <div class="background-overlay"></div>
+
+  <!-- Layer 3: Your content -->
+  <div id="page-content">
+
+    <div class="banner" id="banner">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum eligendi similique illo amet
+      </p>
+      <button type="button" class="banner-btn">x</button>
+    </div>
+
+    <div class="navbar">
+      <ul>
+        <li><a href="#banner">Home</a></li>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">It</a></li>
+        <li><a href="#">Was</a></li>
+        <li><a href="#">hell</a></li>
+      </ul>
+    </div>
+
+    <div class="hero-section">
+      <img src="download.jpg" alt="">
+      <h1>“From the cradle of chaos, creation awakens.
+      From the depths of darkness, light takes its first breath.”</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates error soluta esse. Consectetur excepturi hic veniam nostrum facilis sint eius nihil, provident dignissimos aspernatur eveniet.</p>
+      <div class="btn-group">
+         <button class="btn-hs">Lorem</button>
+         <button class="btn-hs">Ipsum</button>
+      </div>
+    </div>
+
+   <div class="about" id="about">
+      <img src="me.jpg" alt="">
+
+      <div class="about-text">
+         <h3>About Me</h3>
+         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis qui illo nisi labore ipsa. Natus eveniet inventore, reprehenderit deserunt dolorem et eius nihil magnam omnis ut unde minima in ullam iure corrupti asperiores modi dolor! Nisi officiis eum eaque. Pariatur veritatis maiores voluptates! Earum nulla natus impedit illum rerum facilis rem quas soluta voluptate fuga repellendus et placeat tenetur, maxime molestias. Aliquid rerum laborum adipisci, vitae hic fuga et ipsum cumque labore deleniti nihil laudantium sed dignissimos! Ipsum adipisci placeat vitae at magnam rerum odit fuga ratione labore sapiente illum omnis architecto fugit sed aliquid laborum soluta dicta necessitatibus magni saepe, velit optio. Voluptatem obcaecati velit necessitatibus culpa harum exercitationem quia! Dolorum tempore est reprehenderit quam tenetur ut, voluptatum hic ipsam expedita? Rem at sunt delectus autem inventore consequuntur quidem deleniti laudantium repudiandae odio alias suscipit natus minima, vitae maxime qui necessitatibus quos distinctio ipsum </p>
+      </div>
+   </div>
+
+   <div class="contact" id="contact">
+   <h3>Contact Me</h3>
+
+   <form class="contact-form">
+      <label>Name</label>
+      <input type="text" placeholder="Your Name">
+
+      <label>Email</label>
+      <input type="email" placeholder="Your Email">
+
+      <label>Message</label>
+      <textarea placeholder="Your Message"></textarea>
+
+      <button type="submit">Send Message</button>
+   </form>
+   </div>
+
+
+<footer class="site-footer">
+  <p>© 2025 Shauraya Khera. All rights reserved.</p>
+</footer>
+
+
+
+    <div style="margin: 30px;"></div>
+  </div>
+
+  <!-- Particle Script -->
+  <script>
+    const canvas = document.querySelector(".particles");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.6;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.speedY = Math.random() * 0.6 - 0.3;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.fillStyle = "#00ffaa";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    let particlesArray = [];
+
+    function initParticles() {
+      particlesArray = [];
+
+      const BASE_DENSITY = 6000; // smaller = more particles
+      let count = Math.floor((window.innerWidth * window.innerHeight) / BASE_DENSITY);
+
+      if (count < 180) count = 180;
+
+      for (let i = 0; i < count; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      initParticles();
+    });
+  </script>
+
+</body>
+</html>
