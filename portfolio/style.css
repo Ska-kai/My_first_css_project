@@ -76,7 +76,8 @@ canvas.particles {
   margin-left: 60px;
   cursor: pointer;
   border-radius: 2px;
-    font-size: 0.64em;
+  font-size: 0.64em;
+  visibility: visible;
 }
 
 .banner-btn:hover {
